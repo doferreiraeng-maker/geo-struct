@@ -12,7 +12,7 @@ Inserir/excluir/mover vértices, mover contornos, copiar regiões e dividir uma 
 
 ### Importação de coordenadas CSV — primeiro incremento da #9
 
-Importação do contorno completo do terreno ou de uma região existente, com cabeçalho, colunas X/Z e unidade m/cm/mm explícitos, prévia convertida em metros e confirmação em uma operação de histórico. Aceita UTF-8 com BOM opcional, campos entre aspas, separador `;`, vírgula ou tabulação e decimal escolhido, sem ambiguidade entre os separadores. Limites: 1 MiB e 500 pontos. A mesma validação da edição recusa contorno inválido, saída do domínio e sobreposição; erro ou cancelamento conserva o projeto. Não cria materiais, água, cargas ou casos e não infere vínculos geométricos. O formato v4 e o solver permanecem iguais. DXF/DWG e as demais etapas da issue #9 continuam pendentes; este incremento não conclui a issue inteira.
+Importação do contorno completo do terreno ou de uma região existente, com cabeçalho, colunas X/Z e unidade m/cm/mm explícitos, prévia convertida em metros e confirmação em uma operação de histórico. Aceita UTF-8 com BOM opcional, campos entre aspas, separador `;`, vírgula ou tabulação e decimal escolhido, sem ambiguidade entre os separadores. Limites: 1 MiB e 500 pontos. A mesma validação da edição recusa contorno inválido, saída do domínio e sobreposição; erro ou cancelamento conserva o projeto. Não cria materiais, água, cargas ou casos e não infere vínculos geométricos. Mantém o formato atual `geostruct/5`, os perfis numéricos dos casos e o solver. DXF/DWG e as demais etapas da issue #9 continuam pendentes; este incremento não conclui a issue inteira.
 
 ### Materiais e atribuição — implementado
 
