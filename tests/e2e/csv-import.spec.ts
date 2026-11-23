@@ -205,7 +205,7 @@ for (const { unit, buffer } of unitFiles) {
     expected.sections[0].terrain = terrain;
     const imported = await save(page);
     expect(imported).toEqual(expected);
-    expect(imported.version).toBe(4);
+    expect(imported.version).toBe(5);
     for (const [action, state] of [
       ["Desfazer", p],
       ["Refazer", expected],

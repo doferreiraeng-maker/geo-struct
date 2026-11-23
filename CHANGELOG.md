@@ -1,11 +1,20 @@
 # Histórico
 
-## Em desenvolvimento — importação CSV de contornos
+## Em desenvolvimento
+
+### Importação CSV de contornos
 
 - Importação CSV para o terreno ou uma região, com prévia em metros, cabeçalho, colunas e unidade m/cm/mm explícitos.
 - Separadores configuráveis, campos entre aspas, limites de arquivo/pontos e validação de contorno, domínio e sobreposição antes da aplicação.
 - Substituição isolada em uma operação de histórico, preservando IDs, material, demais elementos e seções, com proteção de rascunhos e cancelamento sem alterar o projeto.
-- Exemplos próprios e testes de leitura/interface. O projeto continua em `geostruct/4`; DXF/DWG permanecem pendentes na issue #9.
+- Exemplos próprios e testes de leitura/interface. A importação não altera o formato de projeto; integrada ao perfil por caso, conserva `geostruct/5`. DXF/DWG permanecem pendentes na issue #9.
+
+### Perfil de cálculo por caso
+
+- Formato `geostruct/5` com `numericalProfile` por caso. Geometria, Fellenius, Bishop e busca conservam suas configurações ao salvar, reabrir, alternar modos/métodos, duplicar e desfazer/refazer.
+- Perfis parciais guardam campos nulos como pendências explícitas. Rascunhos inválidos permanecem protegidos na interface. Resultados e prévias continuam na sessão.
+- Leitura de v1 a v4 com validação do contrato original antes da migração. Casos de v4 recebem perfil vazio, conservando a abertura de 3° já usada pela preparação geométrica; os demais parâmetros precisam ser informados.
+- Os perfis ilustrativos preenchidos do projeto padrão passam a integrar o arquivo salvo.
 
 ## 0.2.0 — 2026-11-18
 
