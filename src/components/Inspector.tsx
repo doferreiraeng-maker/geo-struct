@@ -17,6 +17,7 @@ import {
   parseNumber,
 } from "../domain/geometry";
 import { CsvImportDialog } from "./CsvImportDialog";
+import { DxfImportDialog } from "./DxfImportDialog";
 
 const labels: Record<Selection["kind"], string> = {
   project: "Dados do projeto",
@@ -86,9 +87,10 @@ export function Inspector({
   const [error, setError] = useState("");
   const [dirty, setDirty] = useState(false);
   const [csvOpen, setCsvOpen] = useState(false);
+  const [dxfOpen, setDxfOpen] = useState(false);
   useEffect(() => {
-    onDirty(dirty || csvOpen);
-  }, [dirty, csvOpen, onDirty]);
+    onDirty(dirty || csvOpen || dxfOpen);
+  }, [dirty, csvOpen, dxfOpen, onDirty]);
   const change = (key: string, value: string) => {
     setValues((v) => ({ ...v, [key]: value }));
     setDirty(true);
@@ -312,6 +314,24 @@ export function Inspector({
       >
         <div className="inspector-fields">
           <h2>{labels[selection.kind]}</h2>
+          {["section", "terrain", "region"].includes(selection.kind) && (
+            <div>
+              <button
+                type="button"
+                className="secondary"
+                disabled={dirty || csvOpen}
+                onClick={() => setDxfOpen(true)}
+              >
+                Importar DXF
+              </button>
+              {dirty && (
+                <p className="hint">
+                  Aplique ou descarte as propriedades em edição antes de
+                  importar DXF.
+                </p>
+              )}
+            </div>
+          )}
           {["project", "section", "region", "material", "load"].includes(
             selection.kind,
           ) && field("name", "Nome")}
@@ -638,6 +658,18 @@ export function Inspector({
             }}
           />
         )}
+      {dxfOpen && ["section", "terrain", "region"].includes(selection.kind) && (
+        <DxfImportDialog
+          project={project}
+          section={section}
+          onClose={() => setDxfOpen(false)}
+          onApply={(next) => {
+            setDxfOpen(false);
+            onDirty(false);
+            onApply(next);
+          }}
+        />
+      )}
     </aside>
   );
 }
